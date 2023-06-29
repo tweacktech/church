@@ -26,7 +26,7 @@
   <header id="header" class="hoc clear">
     <div id="logo" class="fl_left"> 
      
-      <h1><a href="{{url('/')}}">COCIN HIEPANG</a></h1>
+      <h1><a href="{{url('/')}}">COCIN LCC New Karu</a></h1>
       
     </div>
     <nav id="mainav" class="fl_right"> 
@@ -35,16 +35,17 @@
         <li class="active"><a href="{{url('/')}}">Home</a></li>
         <li><a class="drop" href="#">Event</a>
           <ul>
-            <li><a href="pages/sidebar-right.html#">Sidebar Right</a></li>
-            <li><a href="pages/basic-grid.html#">Basic Grid</a></li>
-            <li><a href="pages/font-icons.html#">Font Icons</a></li>
+            <li><a href="pages/sidebar-right.html">EVENT</a></li>
+            <li><a href="pages/basic-grid.html">FINANCIAL</a></li>
+            <!-- <li><a href="pages/font-icons.html#">Font Icons</a></li> -->
           </ul>
         </li>
-            <li><a href="{{url('sermon')}}">Sermons</a></li>
+            <li><a href="{{url('sermons')}}">Sermons</a></li>
             <li><a href="{{url('/gallery')}}">Gallery</a></li>
             <li><a href="{{url('/contact')}}">Contact</a></li>
             <li><a href="{{url('about')}}">About</a></li>
-            <li><a href="{{url('tithe')}}">Tithe</a></li>
+            <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Tithe</button>
+             <li><a href="{{url('members_form')}}">New</a></li>
         </ul>
       
     </nav>
@@ -151,5 +152,83 @@
 <script src="../layout/scripts/jquery.min.js"></script>
 <script src="../layout/scripts/jquery.backtotop.js"></script>
 <script src="../layout/scripts/jquery.mobilemenu.js"></script>
+
+
+    <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header"> 
+                  <h4 class="modal-title">Payment of Tithe</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                  <form id="paymentForm">
+  <div class="form-group">
+    <label for="inputName">Name</label>
+    <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name" required>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail">Email address</label>
+    <input type="email" name="email" class="form-control" id="email-address" placeholder="Enter your email address" required>
+  </div>
+  <div class="form-group">
+    <label for="inputMessage">Message</label>
+    <input type="number" name="amount" min="100" class="form-control" id="amount" rows="3" placeholder="Enter your Amount">
+  </div>
+  <button type="submit" class="btn btn-primary" onclick="payWithPaystack()">Submit</button>
+</form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+<script>
+$(document).ready(function(){
+    $('#myModal').modal('hide');
+});
+</script>
+
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        const paymentForm = document.getElementById('paymentForm');
+
+paymentForm.addEventListener("submit", payWithPaystack, false);
+
+function payWithPaystack(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email-address").value;
+    const amount = document.getElementById("amount").value;
+
+    let handler = PaystackPop.setup({
+        key: 'pk_test_7ce279d181176a0c0af488855daf72c19ca5ff8e', // Replace with your public key
+        email: email,
+        amount: amount * 100,
+        ref: '' + Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+        // label: "Optional string that replaces customer email"
+        onClose: function() {
+            alert('Window closed.');
+        },
+        callback: function(response) {
+            let message = response.reference;
+            window.location.href = "verify-payment/" + message + "?name=" + encodeURIComponent(name);
+        }
+    });
+
+    handler.openIframe();
+}
+
+    </script>
 </body>
 </html>
