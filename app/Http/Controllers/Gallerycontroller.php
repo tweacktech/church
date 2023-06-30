@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Validator;
 use DB;
 use Auth;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class Gallerycontroller extends Controller
 {
  public function __construct()
@@ -48,13 +48,14 @@ public function addGallery(Request $req){
         $Gallery->Name = $req->input('Name');
         $Gallery->Image = $file_name;
         $Gallery->save();
+        Alert('Success', 'Added successfully!');
   return redirect()->back();}
 }
 
 public function deleteGallery($id) {
     $Gallery = Gallery::find($id);
     $Gallery->delete();
-    
+    Alert('warning', 'An item deleted!');
     return redirect()->back()->with('success', 'Gallery deleted successfully.');
 }
 
@@ -65,7 +66,7 @@ public function unhideGallery(Request $req, $id)
   {
     $update = DB::table('galleries')->where('id', $id)->update(['status' => '1']);
     if ($update) {
-      
+      Alert('Success', 'Unhide successfully!');
       return redirect()->back();
     }
     return redirect()->back();
@@ -76,7 +77,7 @@ public function unhideGallery(Request $req, $id)
     //$data = ['status' => 0];
     $update = DB::table('galleries')->where('id', $id)->update(['status' => '0']);
     if ($update) {
-      
+      Alert('Success', 'hide successfully!');
       return redirect()->back();
     }
     return redirect()->back();
@@ -120,6 +121,7 @@ public function updateGallery(Request $request, $id)
    $Gallery->Name = $request->input('Name');
    
     $Gallery->Image = $file_name;
+     Alert('Success', 'updated successfully!');
     $Gallery->save();
     return redirect()->back()->with('success', 'Gallery updated successfully.');
 
@@ -139,7 +141,7 @@ public function updateGallery(Request $request, $id)
 
    $Gallery = Gallery::find($id);
    $Gallery->Name = $request->input('Name');
-   
+    Alert('Success', 'updated successfully!');
     $Gallery->save();
     return redirect()->back()->with('success', 'Gallery updated successfully.');
 

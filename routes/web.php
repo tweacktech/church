@@ -9,6 +9,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::get('/tithe',[LinksController::class,'tithe']);
 Route::get('/event',[LinksController::class,'event']);
 Route::get('/financial',[LinksController::class,'financial']);
 Route::get('/sermon/{id}',[LinksController::class,'detail']);
+Route::post('/sub',[SubController::class,'store']);
 
 Auth::routes();
 
@@ -39,6 +41,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 // Route::resource('members', MemberController::class);
+
 
 Route::get('/members_form',[MemberController::class,'create'])->name('members_form');
 Route::post('/members_store',[MemberController::class,'store'])->name('members_store');
@@ -97,3 +100,24 @@ Route::get('/unhideEvent/{id}', [EventController::class, 'unhideEvent'])->name('
 Route::get('/editEvent/{id}', [EventController::class, 'editEvent'])->name('editEvent');
 Route::put('/updateEvent/{id}', [EventController::class, 'updateEvent'])->name('updateEvent');
 Route::get('/deleteEvent/{id}', [EventController::class, 'deleteEvent'])->name('deleteEvent');
+
+// Events
+Auth::routes();
+Route::get('/members',[MemberController::class,'Index'])->name('members')->middleware('auth');
+Route::post('/add-Member', [MemberController::class, 'addMember'])->name('addMember');
+Route::get('/hideMember/{id}', [MemberController::class, 'hideMember'])->name('hideMember');
+Route::get('/unhideMember/{id}', [MemberController::class, 'unhideMember'])->name('unhideMember');
+Route::get('/editMember/{id}', [MemberController::class, 'editMember'])->name('editMember');
+Route::put('/updateMember/{id}', [MemberController::class, 'updateMember'])->name('updateMember');
+Route::get('/deleteMember/{id}', [MemberController::class, 'deleteMember'])->name('deleteMember');
+
+
+// Store the contact form submission
+Route::post('/contact', [ContactController::class, 'store'])->name('contacts.store');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contacts');
+Route::get('/hideContact/{id}', [ContactController::class, 'hideContact'])->name('hideContact');
+Route::get('/unhideContact/{id}', [ContactController::class, 'unhideContact'])->name('unhideContact');
+Route::get('/editContact/{id}', [ContactController::class, 'editContact'])->name('editContact');
+Route::put('/updateContact/{id}', [ContactController::class, 'updateContact'])->name('updateContact');
+Route::get('/deleteContact/{id}', [ContactController::class, 'deleteContact'])->name('deleteContact');

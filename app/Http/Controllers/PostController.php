@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Validator;
 use DB;
 use Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class PostController extends Controller
 {
     public function __construct()
@@ -54,13 +56,14 @@ public function addPost(Request $req){
         $Post->Image = $file_name;
         $Post->Audio = $file_names;
         $Post->save();
+        Alert::success('Success', 'Operation completed successfully!');
   return redirect()->back();}
 }
 
 public function deletePost($id) {
     $Post = Post::find($id);
     $Post->delete();
-    
+    Alert::success('Success', 'Operation completed successfully!');
     return redirect()->back()->with('success', 'Post deleted successfully.');
 }
 
@@ -71,7 +74,7 @@ public function unhidePost(Request $req, $id)
   {
     $update = DB::table('posts')->where('id', $id)->update(['status' => '1']);
     if ($update) {
-      
+      Alert::success('Success', 'Operation completed successfully!');
       return redirect()->back();
     }
     return redirect()->back();
@@ -82,7 +85,7 @@ public function unhidePost(Request $req, $id)
     //$data = ['status' => 0];
     $update = DB::table('posts')->where('id', $id)->update(['status' => '0']);
     if ($update) {
-      
+      Alert::success('Success', 'Operation completed successfully!');
       return redirect()->back();
     }
     return redirect()->back();
@@ -116,6 +119,7 @@ public function updatePost(Request $request, $id)
     $Post->Image = $file_name;
     $Post->Audio = $file_names;
     $Post->save();
+    Alert::success('Success', 'Operation completed successfully!');
     return redirect()->back()->with('success', 'Post updated successfully.');
 
   }elseif ($request->file('Image')!="") {
@@ -128,6 +132,7 @@ public function updatePost(Request $request, $id)
     $Post->Description = $request->input('Description');
     $Post->Image = $file_name;
     $Post->save();
+    Alert::success('Success', 'Operation completed successfully!');
     return redirect()->back()->with('success', 'Post updated successfully.');
 
   }elseif($request->file('Audio')!=""){
@@ -141,6 +146,7 @@ public function updatePost(Request $request, $id)
     $Post->Description = $request->input('Description');
     $Post->Audio = $file_names;
     $Post->save();
+    Alert::success('Success', 'Operation completed successfully!');
     return redirect()->back()->with('success', 'Post updated successfully.');
 
   }else{
@@ -149,6 +155,7 @@ public function updatePost(Request $request, $id)
    $Post->Title = $request->input('Title');
     $Post->Description = $request->input('Description');
     $Post->save();
+    Alert::success('Success', 'Operation completed successfully!');
     return redirect()->back()->with('success', 'Post updated successfully.');
 
   }

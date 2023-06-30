@@ -15,7 +15,7 @@ gallery
                             <div class="form-group">
                                 <label for="Name">Full Name:</label>
                                 <input type="text" class="form-control" id="Name" 
-                               name="Name" placeholder="eg. meyorpop" required>
+                               name="name" placeholder="eg. meyorpop" required>
                                @error('Name')
                                      <div class="mb-5">
                                      <label class="fs-6 form-label fw-bolder " style="color:red" >{{ $message }}</label>
@@ -45,9 +45,9 @@ gallery
 
                              <div class="form-group">
                                 <label for="dob">Date of Birth:</label>
-                                <input type="date" min="0" class="form-control" id="address" 
-                               name="address" placeholder="OTA Ogun" required>
-                               @error('address')
+                                <input type="date" min="0" class="form-control" id="dob" 
+                               name="dob" placeholder="OTA Ogun" required>
+                               @error('dob')
                                      <div class="mb-5">
                                      <label class="fs-6 form-label fw-bolder " style="color:red" >{{ $message }}</label>
                                       </div>
@@ -56,9 +56,9 @@ gallery
 
                              <div class="form-group">
                                 <label for="address">Home Address:</label>
-                                <input type="text" min="0" class="form-control" id="phone" 
-                               name="phone" placeholder="OTA Ogun" required>
-                               @error('phone')
+                                <input type="text" min="0" class="form-control" id="address" 
+                               name="address" placeholder="OTA Ogun" required>
+                               @error('address')
                                      <div class="mb-5">
                                      <label class="fs-6 form-label fw-bolder " style="color:red" >{{ $message }}</label>
                                       </div>

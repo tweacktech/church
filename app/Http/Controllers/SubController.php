@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sub;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Validation\Rule;
+use Validator;
+use DB;
+use Auth;
 class SubController extends Controller
 {
     /**
@@ -32,12 +37,29 @@ class SubController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-       
-         $data=Sub::create($request->all());
-         return redirect()->back();
+
+
+public function store(Request $request)
+{   
+    $user=DB::table('subs')->where('email',$request->input('email'))->get();
+    if ($user) {
+        Alert::warning('Warning', 'Email already exists');
+        return redirect()->back();
     }
+    $validator = Validator::make($request->all(), [
+        'email' => ['required', 'email', Rule::unique('members')],
+    ]);
+
+    if ($validator->fails()) {
+        Alert::warning('Warning', 'Email already exists');
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    $data = Sub::create($request->all());
+    Alert::success('Success', 'Operation completed successfully!');
+    return redirect()->back();
+}
+
 
     /**
      * Display the specified resource.

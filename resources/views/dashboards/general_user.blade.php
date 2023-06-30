@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-                            <div class=" col-md-4 col-sm-6">
+<!--                             <div class=" col-md-4 col-sm-6">
                                 <div class="card overflow-hidden">
                                     <div type="button" class="card-body d-flex align-items-center justify-content-around"
                                         data-toggle="modal" data-target="#addModal">
@@ -87,7 +87,7 @@
                                     </div>
                                     <p class="text-center mt-md-n4">Add Guest</p>
                                 </div>
-                            </div>
+                            </div> -->
                          
                             <div class=" col-md-4 col-sm-6">
                                 <div class="card overflow-hidden">
@@ -95,11 +95,12 @@
                                         {{-- <div class="row">
                                             <div class="col"> --}}
                                         <div class="p-md-3 col-8">
-                                            <a href="">
+                                            <a href="{{route('contacts')}}">
                                                 <img class="img-fluid" src="{{ asset('/images/help-desk 1.png') }}"
                                                     alt="">
                                             </a>
-                                        </div>
+                                        </div> @php $data=DB::table('contacts')->where('status',0)->get(); $count=count($data) @endphp
+                                         <h2 id="count" class="text-primary ms-lg-2 mb-0 mt-3 me-5 me-md-0  display-5">{{$count}}</h2>
                                         {{-- <p class="text-primary ms-lg-2 mb-0 mt-3 me-5 me-md-0  display-5">17</p> --}}
                                         {{-- </div>
                                         </div> --}}

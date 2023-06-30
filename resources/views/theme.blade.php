@@ -15,6 +15,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- Add these lines within the <head> tag -->
+<link rel="stylesheet" href="{{ asset('vendor/sweetalert2/sweetalert2.min.css') }}">
+
+
+
+
+
 
 <!-- refrenced from metatags.io -->
 
@@ -94,6 +101,7 @@
   <main class="hoc container clear"> 
 
   @yield('content')
+   @include('sweetalert::alert')
     
     <!-- / main body -->
     <br>
@@ -231,5 +239,11 @@ function payWithPaystack(e) {
 }
 
     </script>
+
+    <!-- Add these lines before the closing </body> tag -->
+<script src="{{ asset('vendor/sweetalert2/sweetalert2.min.js') }}"></script>
+<script>
+    @include('sweetalert::alert')
+</script>
 </body>
 </html>

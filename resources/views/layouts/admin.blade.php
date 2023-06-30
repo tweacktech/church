@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     
     <!-- PAGE TITLE HERE -->
-    <title>Airline SaaS - Group Booking  | Airline Chartered Booking System | Trip Planner</title>
+    <title>ADMIN</title>
 
     
     <!-- FAVICONS ICON -->
@@ -26,6 +26,11 @@
     <link href="{{asset('/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}" rel="stylesheet">
     <link href="{{asset('/css/style.css')}}" rel="stylesheet">
     <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+    <!-- Add these lines within the <head> tag -->
+<link rel="stylesheet" href="{{ asset('vendor/sweetalert2/sweetalert2.min.css') }}">
+
+
+
 
 </head>
 <body>
@@ -70,9 +75,8 @@
         ***********************************-->
 
      @yield('content')
-     
+      @include('sweetalert::alert')
      @include('layouts.header')
-    @include('layouts.slider2')
 
     @include('layouts.Sidebar')
 
@@ -126,6 +130,10 @@
     <!-- Svganimation scripts -->
     <script src="{{asset('/vendor/svganimation/vivus.min.js')}}"></script>
     <script src="{{asset('/vendor/svganimation/svg.animation.js')}}"></script>
-    
+    <!-- Add these lines before the closing </body> tag -->
+<script src="{{ asset('vendor/sweetalert2/sweetalert2.min.js') }}"></script>
+<script>
+    @include('sweetalert::alert')
+</script>
 </body>
 </html>

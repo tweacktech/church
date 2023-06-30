@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Models\GroupBooking;
 use Validator;
 use DB;
 use Auth;
 use App\Models\Payment;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PaymentController extends Controller
 {
@@ -67,13 +67,13 @@ class PaymentController extends Controller
    
      if ($pa) {
        
-         // Alert('success','payment success');
+         Alert('Success','payment success');
     return redirect()->back()->with('success', 'Payment deleted successfully.');
     }
-     // Alert('unsuccess','payment unsuccess');
+     Alert('Error','payment unsuccess');
      return redirect()->back()->with('error', 'Payment not found.');
   }
-// Alert('warning','payment not success');
+Alert('Warning','payment not success');
         // return $response;
  return redirect()->back()->with('error', 'Payment not found.');
     }
@@ -98,7 +98,7 @@ class PaymentController extends Controller
     if ($payment) {
         // Delete the payment
         $payment->delete();
-
+Alert('Success','Deletepayment success');
         // Redirect or return a response
         return redirect()->back()->with('success', 'Payment deleted successfully.');
     } else {
@@ -116,7 +116,7 @@ public function hidePayment($id)
         // Set the payment status to inactive or hidden (0)
         $payment->status = "pending";
         $payment->save();
-
+Alert('Success','hidepayment success');
         // Redirect or return a response
         return redirect()->back()->with('success', 'Payment hidden successfully.');
     } else {
@@ -134,7 +134,7 @@ public function unhidePayment($id)
         // Set the payment status to active or visible (1)
         $payment->status = "Approved";
         $payment->save();
-
+        Alert('Success','unhidepayment success');
         // Redirect or return a response
         return redirect()->back()->with('success', 'Payment unhidden successfully.');
     } else {
