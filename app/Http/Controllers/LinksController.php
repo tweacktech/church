@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Gallery;
+use App\Models\Financial;
+use App\Models\Event;
 
 class LinksController extends Controller
 {
@@ -15,8 +17,22 @@ class LinksController extends Controller
      */
     public function index()
     {
-        //
-        return view('index');
+         $data=Post::latest()->paginate(6);
+       
+        return view('index',compact('data'));
+    }
+
+    public function financial()
+    {
+         $data=Financial::latest()->paginate(6);
+       
+        return view('financial',compact('data'));
+    }
+     public function event()
+    {
+         $data=Event::latest()->paginate(6);
+       
+        return view('Event',compact('data'));
     }
 
     public function tithe()

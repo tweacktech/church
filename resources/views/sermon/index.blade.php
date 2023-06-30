@@ -61,7 +61,7 @@
                                 </td> 
 
                                 <td>
-                                     {!!  substr(($data->Description),0,100) !!}..
+                                     {!!  substr(($data->Description),0,20) !!}..
 
                                 </td> 
                                 
@@ -138,14 +138,15 @@
 
                                <div class="form-group">
                                 <label for="Description">Description:</label>
-                                <input type="text" class="form-control" id="Description" 
-                               name="Description" required>
+                                <textarea type="text" class="form-control" style="height: 150px;" id="Description" 
+                               name="Description" > </textarea>
                                @error('Description')
                                      <div class="mb-5">
                                      <label class="fs-6 form-label fw-bolder " style="color:red" >{{ $message }}</label>
                                       </div>
                                 @enderror
                             </div>
+
 
                              <div class="form-group">
                                 <label for="Image">Image:</label>

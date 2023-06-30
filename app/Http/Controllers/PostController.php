@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Illuminate\Http\Requests;
 use Illuminate\Support\Facades\UploadedFile;
 use App\Models\Post;
 use Carbon\Carbon;

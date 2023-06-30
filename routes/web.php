@@ -7,6 +7,8 @@ use App\Http\Controllers\LinksController;
 use App\Http\Controllers\SubController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\FinancialController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,8 @@ Route::get('/gallery', [LinksController::class,'gallery']);
 Route::get('/contact',[LinksController::class,'contact'] );
 Route::get('/about',[LinksController::class,'about']);
 Route::get('/tithe',[LinksController::class,'tithe']);
+Route::get('/event',[LinksController::class,'event']);
+Route::get('/financial',[LinksController::class,'financial']);
 Route::get('/sermon/{id}',[LinksController::class,'detail']);
 
 Auth::routes();
@@ -71,3 +75,25 @@ Route::get('payment', [PaymentController::class, 'paymentList'])->name('paymentL
 Route::get('/payments/delete/{id}', [PaymentController::class,'deletePayment'])->name('deletePayment')->middleware('auth');
 Route::get('/payments/hide/{id}', [PaymentController::class,'hidePayment'])->name('hidePayment')->middleware('auth');
 Route::get('/payments/unhide/{id}', [PaymentController::class,'unhidePayment'])->name('unhidePayment')->middleware('auth');
+
+
+// financial
+Auth::routes();
+Route::get('/Financial', [FinancialController::class, 'indexFinancial'])->name('indexFinancial');
+Route::post('/add-Financial', [FinancialController::class, 'addFinancial'])->name('addFinancial');
+Route::get('/hideFinancial/{id}', [FinancialController::class, 'hideFinancial'])->name('hideFinancial');
+Route::get('/unhideFinancial/{id}', [FinancialController::class, 'unhideFinancial'])->name('unhideFinancial');
+Route::get('/editFinancial/{id}', [FinancialController::class, 'editFinancial'])->name('editFinancial');
+Route::put('/updateFinancial/{id}', [FinancialController::class, 'updateFinancial'])->name('updateFinancial');
+Route::get('/deleteFinancial/{id}', [FinancialController::class, 'deleteFinancial'])->name('deleteFinancial');
+
+
+// Events
+Auth::routes();
+Route::get('/Event', [EventController::class, 'indexEvent'])->name('indexEvent');
+Route::post('/add-Event', [EventController::class, 'addEvent'])->name('addEvent');
+Route::get('/hideEvent/{id}', [EventController::class, 'hideEvent'])->name('hideEvent');
+Route::get('/unhideEvent/{id}', [EventController::class, 'unhideEvent'])->name('unhideEvent');
+Route::get('/editEvent/{id}', [EventController::class, 'editEvent'])->name('editEvent');
+Route::put('/updateEvent/{id}', [EventController::class, 'updateEvent'])->name('updateEvent');
+Route::get('/deleteEvent/{id}', [EventController::class, 'deleteEvent'])->name('deleteEvent');

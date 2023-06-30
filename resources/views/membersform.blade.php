@@ -71,7 +71,26 @@ gallery
 </form>
 </fieldset>
 </div>
-<div class="col-md-6"> shsshhhssh</div>
+<div  id="services" class="col-md-6"> 
+
+    <ul class="nospace group grid-3">
+    @php $data=DB::table('posts')->latest()->paginate(3);   @endphp
+            @foreach($data as $s)
+        <li class="col-md-6">
+          <article><a href="{{url('sermon',$s->id)}}"><i class="fas fa-spray-can"></i></a>
+            <h6 class="heading">{{$s->Title}}</h6>
+            <ul class="nospace meta clear"><br>
+                <li><i class="fas fa-user"></i> Admin</li>
+                <li>
+                  <time datetime="2045-04-06T08:15+00:00">{{ \Carbon\Carbon::parse($s->created_at)->diffForHumans() }}</time>
+                </li>
+              </ul><br>
+            <p>{{substr($s->Description,0,30) }}..</p>
+            <footer><a href="{{url('sermon',$s->id)}}">More Details &raquo;</a></footer>
+          </article>
+        </li>
+        @endforeach
+      </ul></div>
 </div>
 @endsection
 

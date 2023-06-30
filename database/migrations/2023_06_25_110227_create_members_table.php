@@ -17,7 +17,7 @@ class CreateMembersTable extends Migration
               $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('dob');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->timestamps();

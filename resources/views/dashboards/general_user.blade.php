@@ -41,7 +41,7 @@
                             </div>  
                             <div class=" col-md-4 col-sm-6">
                                 <div class="card overflow-hidden">
-                                    <a href="" class="card-body d-flex align-items-center justify-content-around">
+                                    <a href="{{route('indexEvent')}}" class="card-body d-flex align-items-center justify-content-around">
                                         {{-- <div class="row">
                                             <div class="col"> --}}
                                         <div class="p-md-3">
@@ -50,42 +50,20 @@
                                                     alt="">
                                             <!-- </a> -->
                                         </div>
-                                        @php $data=DB::table('users')->get(); $count=count($data) @endphp
+                                        @php $data=DB::table('events')->get(); $count=count($data) @endphp
                                          <h2 id="count" class="text-primary ms-lg-2 mb-0 mt-3 me-5 me-md-0  display-5">{{$count}}</h2>
                                         {{-- </div>
                                         </div> --}}
                                     </a>
                                     <!-- <p class="text-center mt-md-n4 btn-primary">View Request</p> -->
                                      <button class="btn-primary" data-toggle="modal" >
-                                    Pending Request</button>
-                                </div>
-                            </div>
-
-                               <div class=" col-md-4 col-sm-6">
-                                <div class="card overflow-hidden">
-                                    <a href="">
-                                    <div class="card-body d-flex align-items-center justify-content-around">
-                                        {{-- <div class="row">
-                                            <div class="col"> --}}
-                                        <div class="p-md-3 col-8">
-                                            <!-- <a href="{{url('group')}}"> -->
-                                                <img class="img-fluid" src="{{ asset('/images/viewbooking.png') }}"
-                                                    alt="">
-                                            <!-- </a> -->
-                                        </div>
-                                          @php $data=DB::table('users')->get(); $count=count($data) @endphp
-                                         <h2 id="count" class="text-primary ms-lg-2 mb-0 mt-3 me-5 me-md-0  display-5">{{$count}}</h2>
-                                        {{-- </div>
-                                        </div> --}}
-                                    </div>
-                                    </a>
-                                    <p class="text-center mt-md-n4">View Booking</p>
+                                    Events</button>
                                 </div>
                             </div>
 
                             <div class=" col-md-4 col-sm-6">
                                 <div class="card overflow-hidden">
-                                    <div href="" data-toggle="modal" {{-- data-target="#exampleModalCenter"> --}} <div type="button"
+                                    <a href="{{route('paymentList')}}" >  <div type="button"
                                         class="card-body d-flex align-items-center justify-content-around" data-toggle="modal"
                                         data-target="#paymentModal">
                                         <div class="p-md-3">
@@ -94,10 +72,11 @@
                                         </div>
                                          @php $data=DB::table('payments')->get(); $count=count($data) @endphp
                                          <h2 id="count" class="text-primary ms-lg-2 mb-0 mt-3 me-5 me-md-0  display-5">{{$count}}</h2>
-                                    </div>
-                                    <p class="text-center mt-md-n4">Payment</p>
+                                    </a>
+                                    <p class="text-center mt-md-n4"><a href="{{route('paymentList')}}" >Payment</a></p>
                                 </div>
                             </div>
+                        </div>
                             <div class=" col-md-4 col-sm-6">
                                 <div class="card overflow-hidden">
                                     <div type="button" class="card-body d-flex align-items-center justify-content-around"

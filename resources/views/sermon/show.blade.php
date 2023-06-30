@@ -47,8 +47,8 @@
 
                                <div class="form-group">
                                 <label for="Description">Description:</label>
-                                <input type="text" class="form-control" value="{{$update->Description}}" id="Description" 
-                               name="Description" >
+                                <textarea type="text" class="form-control" style="height: 150px;" id="Description" 
+                               name="Description" >{{$update->Description}} </textarea>
                                @error('Description')
                                      <div class="mb-5">
                                      <label class="fs-6 form-label fw-bolder " style="color:red" >{{ $message }}</label>

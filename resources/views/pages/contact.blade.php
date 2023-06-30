@@ -17,12 +17,8 @@ Contact
             <label for="email">Mail <span>*</span></label>
             <input type="email" name="email" id="email" value="" size="22" required>
           </div>
-          <div class="one_third">
-            <label for="url">Website</label>
-            <input type="url" name="url" id="url" value="" size="22">
-          </div>
           <div class="block clear">
-            <label for="comment">Your Comment</label>
+            <label for="comment">Your Comment/Request</label>
             <textarea name="comment" id="comment" cols="25" rows="10"></textarea>
           </div>
           <div>

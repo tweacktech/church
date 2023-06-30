@@ -35,15 +35,15 @@
         <li class="active"><a href="{{url('/')}}">Home</a></li>
         <li><a class="drop" href="#">Event</a>
           <ul>
-            <li><a href="pages/sidebar-right.html">EVENT</a></li>
-            <li><a href="pages/basic-grid.html">FINANCIAL</a></li>
+            <li><a href="{{url('/event')}}">EVENT</a></li>
+            <li><a href="{{url('/financial')}}">FINANCIAL</a></li>
             <!-- <li><a href="pages/font-icons.html#">Font Icons</a></li> -->
           </ul>
         </li>
             <li><a href="{{url('sermons')}}">Sermons</a></li>
             <li><a href="{{url('/gallery')}}">Gallery</a></li>
             <li><a href="{{url('/contact')}}">Contact</a></li>
-            <li><a href="{{url('about')}}">About</a></li>
+            <!-- <li><a href="{{url('about')}}">About</a></li> -->
             <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Tithe</button>
              <li><a href="{{url('members_form')}}">New</a></li>
         </ul>
@@ -144,7 +144,7 @@
   <div id="copyright" class="hoc clear"> 
     <p class="fl_left">Copyright &copy; 2022 - All Rights Reserved - <a href="#">TweackTech</a></p>
     <p class="fl_right"> <a href="{{url('/contact')}}">Contact</a>
-            <a href="#">About</a> </p>
+            <a href="{{url('/about')}}">About</a> </p>
   </div>
 </div>
 <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
@@ -172,8 +172,9 @@
     <label for="inputEmail">Email address</label>
     <input type="email" name="email" class="form-control" id="email-address" placeholder="Enter your email address" required>
   </div>
+  
   <div class="form-group">
-    <label for="inputMessage">Message</label>
+    <label for="inputMessage">Amount</label>
     <input type="number" name="amount" min="100" class="form-control" id="amount" rows="3" placeholder="Enter your Amount">
   </div>
   <button type="submit" class="btn btn-primary" onclick="payWithPaystack()">Submit</button>
