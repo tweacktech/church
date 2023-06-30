@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 29, 2023 at 03:48 AM
+-- Generation Time: Jun 30, 2023 at 04:56 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -51,6 +51,47 @@ INSERT INTO `companies` (`id`, `name`, `address`, `email`, `contact`, `status`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(255) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `Title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `Title`, `Description`, `time`, `date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'ffffffffffff', 'ffffffffffffffffffffffffff sssss', '13:02', '2023-07-06', 1, '2023-06-29 22:21:17', '2023-06-29 22:33:50'),
+(2, 'wwwwwwwwwww`', '`dddddddddddddddd', '02:22', '2023-07-08', 1, '2023-06-29 22:43:06', '2023-06-29 22:43:06');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -63,6 +104,30 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `financials`
+--
+
+CREATE TABLE `financials` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` decimal(8,2) NOT NULL,
+  `date` date NOT NULL,
+  `status` int(11) DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `financials`
+--
+
+INSERT INTO `financials` (`id`, `name`, `amount`, `date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Tithe', '3222.00', '2023-06-30', 1, '2023-06-29 21:57:27', '2023-06-29 21:57:27'),
+(3, 'Offering', '30400.00', '2023-07-08', 1, '2023-06-30 10:55:52', '2023-06-30 10:55:52');
 
 -- --------------------------------------------------------
 
@@ -99,6 +164,31 @@ INSERT INTO `galleries` (`id`, `Name`, `Image`, `status`, `created_at`, `updated
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `members`
+--
+
+CREATE TABLE `members` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dob` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `members`
+--
+
+INSERT INTO `members` (`id`, `name`, `email`, `dob`, `phone`, `address`, `created_at`, `updated_at`) VALUES
+(1, 'Arden Richs', 'neryna@mailinator.com', '1987-03-11', '192', 'Sint non velit maior', '2023-06-30 11:13:45', '2023-06-30 12:32:08'),
+(2, 'Daniel Gallagher', 'bepunutop@mailinator.com', '1997-08-06', '22', 'Nam voluptatem dolor', '2023-06-30 12:20:07', '2023-06-30 12:20:07');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -119,7 +209,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2022_08_09_182136_create_posts_table', 1),
 (6, '2022_08_10_103208_create_subs_table', 1),
-(7, '2022_08_21_204433_create_galleries_table', 2);
+(7, '2022_08_21_204433_create_galleries_table', 2),
+(8, '2023_06_25_103955_create_subscriptions_table', 3),
+(9, '2023_06_25_110227_create_members_table', 3),
+(10, '2023_06_29_151818_create_financials_table', 3),
+(11, '2023_06_29_152017_create_events_table', 3),
+(12, '2023_06_30_135242_create_contacts_table', 4);
 
 -- --------------------------------------------------------
 
@@ -164,7 +259,8 @@ INSERT INTO `payments` (`id`, `Name`, `email`, `amount`, `status`, `created_at`,
 (8, '1', 'meyor@gmail.com', '44400.00', 'Approved', '2023-06-23 09:59:55', '2023-06-23 09:59:55'),
 (11, 'Reece Wilkins', 'coqez@mailinator.com', '10000.00', 'Approved', '2023-06-29 00:46:10', '2023-06-29 00:46:10'),
 (12, 'Donna Gates', 'banoj@mailinator.com', '10000.00', 'Approved', '2023-06-29 00:46:46', '2023-06-29 00:46:46'),
-(13, 'Paul Lynn', 'dycab@mailinator.com', '10000.00', 'Approved', '2023-06-29 00:47:03', '2023-06-29 00:47:03');
+(13, 'Paul Lynn', 'dycab@mailinator.com', '10000.00', 'Approved', '2023-06-29 00:47:03', '2023-06-29 00:47:03'),
+(14, 'Reagan Beck', 'qumo@mailinator.com', '10000.00', 'Approved', '2023-06-30 11:35:21', '2023-06-30 12:07:59');
 
 -- --------------------------------------------------------
 
@@ -213,7 +309,7 @@ INSERT INTO `posts` (`id`, `Title`, `Description`, `Image`, `Audio`, `status`, `
 (6, 'Aliqua Repellendus', 'Nulla dolor eum repr', '2.png', 'Nulla est cum dolore', 1, '2022-08-16 15:00:48', '2022-08-16 15:00:48'),
 (7, 'Aliqua Repellendusm', 'Nulla dolor eum repr', '2.png', 'Nulla est cum dolore', 1, '2022-08-16 15:00:48', '2022-08-16 15:00:48'),
 (8, 'Aliqua Repellendusd', 'Nulla dolor eum repr', '2.png', 'Nulla est cum dolore', 1, '2022-08-16 15:00:48', '2022-08-16 15:00:48'),
-(9, 'thhhshshhcfggh', 'dhhhdhdhhdhd', '16879923331e1ee62948d5a6429b53f5dba228d975.png', '1687992333waterfall-140894.mp3', 1, '2023-06-28 21:45:33', '2023-06-28 21:45:33');
+(9, 'thhhshshhcfggh', 'dhhhdhdhhdhd ffffffffffffffffffffffffffffffffffffffffffff ddddddddddddddddddddddddddddd fffffffffffffffffffffffffffffffffffffff dddddddddddddddddddddddddddddddddddssddddddddddddddddddddddddddddddddddddd', '16879923331e1ee62948d5a6429b53f5dba228d975.png', '1687992333waterfall-140894.mp3', 0, '2023-06-28 21:45:33', '2023-06-29 12:04:20');
 
 -- --------------------------------------------------------
 
@@ -238,7 +334,28 @@ INSERT INTO `subs` (`id`, `email`, `created_at`, `updated_at`) VALUES
 (6, 'emsai@gm.com', '2022-08-21 11:14:24', '2022-08-21 11:14:24'),
 (8, 'emsais@gm.com', '2022-08-21 11:15:58', '2022-08-21 11:15:58'),
 (9, 'dan@gmail.com', '2023-05-11 07:41:47', '2023-05-11 07:41:47'),
-(10, 'meyorpop@gmail.com', '2023-06-25 10:17:05', '2023-06-25 10:17:05');
+(10, 'meyorpop@gmail.com', '2023-06-25 10:17:05', '2023-06-25 10:17:05'),
+(11, 'jolehy@mailinator.com', '2023-06-30 10:01:32', '2023-06-30 10:01:32'),
+(13, 'jolehys@mailinator.com', '2023-06-30 10:03:07', '2023-06-30 10:03:07'),
+(15, 'pop@gmail.com', '2023-06-30 10:36:26', '2023-06-30 10:36:26'),
+(17, 'pops@gmail.com', '2023-06-30 10:39:20', '2023-06-30 10:39:20'),
+(18, 'lop@gmail.com', '2023-06-30 10:41:07', '2023-06-30 10:41:07'),
+(19, 't@gmail.com', '2023-06-30 10:43:36', '2023-06-30 10:43:36'),
+(20, 'staff@gmail.com', '2023-06-30 10:48:52', '2023-06-30 10:48:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscriptions`
+--
+
+CREATE TABLE `subscriptions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -280,6 +397,18 @@ ALTER TABLE `companies`
   ADD UNIQUE KEY `companies_email_unique` (`email`);
 
 --
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -287,10 +416,23 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `financials`
+--
+ALTER TABLE `financials`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `galleries`
 --
 ALTER TABLE `galleries`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `members`
+--
+ALTER TABLE `members`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `members_email_unique` (`email`);
 
 --
 -- Indexes for table `migrations`
@@ -332,6 +474,13 @@ ALTER TABLE `subs`
   ADD UNIQUE KEY `subs_email_unique` (`email`);
 
 --
+-- Indexes for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `subscriptions_email_unique` (`email`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -348,10 +497,28 @@ ALTER TABLE `companies`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `financials`
+--
+ALTER TABLE `financials`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `galleries`
@@ -360,16 +527,22 @@ ALTER TABLE `galleries`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `members`
+--
+ALTER TABLE `members`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -387,7 +560,13 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `subs`
 --
 ALTER TABLE `subs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
